@@ -3,12 +3,13 @@ import {
   motion,
   useMotionValue,
   useMotionValueEvent,
+  useScroll,
   useTransform,
 } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const Wrapper = styled(motion.div)`
-  height: 100vh;
+  height: 200vh;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -52,12 +53,14 @@ function App() {
       "linear-gradient(135deg, rgb(0, 238, 155), rgb(238, 178, 0))",
     ]
   );
-  // useMotionValueEvent(rotateZ, "change", (l) => {
+  const { scrollYProgress } = useScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 5]);
+  // useMotionValueEvent(scrollYProgress, "change", (l) => {
   //   console.log(l);
   // });
   return (
     <Wrapper style={{ background: gradient }}>
-      <Box style={{ x, rotateZ }} drag="x" dragSnapToOrigin></Box>
+      <Box style={{ x, rotateZ, scale }} drag="x" dragSnapToOrigin></Box>
     </Wrapper>
   );
 }
