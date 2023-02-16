@@ -12,68 +12,36 @@ const Wrapper = styled.div`
 const Box = styled(motion.div)`
   width: 200px;
   height: 200px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: white;
   border-radius: 40px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
-const Circle = styled(motion.div)`
-  background-color: white;
-  height: 70px;
-  width: 70px;
-  place-self: center;
-  border-radius: 35px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-`;
-
-const myVars = {
-  start: { scale: 0 },
-  end: {
-    scale: 1,
-    rotateZ: 360,
-    transition: { type: "spring", bounce: 0.5, delay: 0.5 },
-  },
-};
-
 const boxVars = {
-  start: {
-    opacity: 0,
-    scale: 0.5,
-  },
-  end: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      duration: 0.5,
-      bounce: 0.5,
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const circleVars = {
-  start: {
-    opacity: 0,
-    y: 10,
-  },
-  end: {
-    opacity: 1,
-    y: 0,
+  hover: { scale: 1.5, rotateZ: 90 },
+  tap: { scale: 1, borderRadius: "100px" },
+  drag: {
+    backgroundColor: "#fbc531",
+    trainsition: { duration: 10 },
   },
 };
 
 function App() {
   return (
     <Wrapper>
-      <Box variants={boxVars} initial="start" animate="end">
-        <Circle variants={circleVars}></Circle>
-        <Circle variants={circleVars}></Circle>
-        <Circle variants={circleVars}></Circle>
-        <Circle variants={circleVars}></Circle>
-      </Box>
+      <Box
+        drag
+        dragConstraints={{
+          top: -50,
+          bottom: 50,
+          left: -50,
+          right: 50,
+        }}
+        variants={boxVars}
+        whileHover="hover"
+        whileDrag="drag"
+        whileTap="tap"
+      ></Box>
     </Wrapper>
   );
 }
