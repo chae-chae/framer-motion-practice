@@ -33,6 +33,10 @@ const Box = styled(motion.div)`
   background-color: rgba(255, 255, 255, 1);
   border-radius: 40px;
   height: 200px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
@@ -51,7 +55,7 @@ function App() {
   return (
     <Wrapper>
       <Grid>
-        {["1", "2", "3", "4"].map((n) => (
+        {["1", "2", "3", "4", "5", "6"].map((n) => (
           <Box onClick={() => setId(n)} key={n} layoutId={n} />
         ))}
       </Grid>
@@ -66,10 +70,10 @@ function App() {
             <Box
               layoutId={id}
               style={{
-                width: 400,
-                height: 200,
+                width: 450,
+                height: 450,
               }}
-            />
+            >{`box ${id}`}</Box>
           </Overlay>
         ) : null}
       </AnimatePresence>
