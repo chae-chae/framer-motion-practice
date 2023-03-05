@@ -67,7 +67,7 @@ function App() {
   };
   return (
     <Wrapper>
-      <AnimatePresence mode="wait" custom={back}>
+      <AnimatePresence custom={back}>
         <Box
           custom={back}
           variants={box}
